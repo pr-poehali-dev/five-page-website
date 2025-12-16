@@ -6,6 +6,7 @@ import RoadmapPage from './RoadmapPage';
 import AboutPage from './AboutPage';
 import Navigation from '../components/Navigation';
 import ScrollToTop from '../components/ScrollToTop';
+import Footer from '../components/Footer';
 
 type Page = 'manifest' | 'videos' | 'news' | 'roadmap' | 'about';
 
@@ -41,10 +42,10 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-background">
+    <div className="min-h-screen bg-background flex flex-col">
       <Navigation currentPage={currentPage} onNavigate={handleNavigate} />
       <main 
-        className={`transition-all duration-200 ${
+        className={`flex-1 transition-all duration-200 ${
           isTransitioning 
             ? 'opacity-0 translate-y-4' 
             : 'opacity-100 translate-y-0'
@@ -52,6 +53,7 @@ const Index = () => {
       >
         {renderPage()}
       </main>
+      <Footer />
       <ScrollToTop />
     </div>
   );
