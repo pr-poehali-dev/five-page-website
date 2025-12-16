@@ -10,6 +10,17 @@ type Page = 'manifest' | 'videos' | 'news' | 'roadmap' | 'about';
 
 const Index = () => {
   const [currentPage, setCurrentPage] = useState<Page>('manifest');
+  const [isTransitioning, setIsTransitioning] = useState(false);
+
+  const handleNavigate = (page: Page) => {
+    if (page === currentPage) return;
+    
+    setIsTransitioning(true);
+    setTimeout(() => {
+      setCurrentPage(page);
+      setIsTransitioning(false);
+    }, 200);
+  };
 
   const renderPage = () => {
     switch (currentPage) {
@@ -30,8 +41,14 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-background">
-      <Navigation currentPage={currentPage} onNavigate={setCurrentPage} />
-      <main className="animate-fade-in">
+      <Navigation currentPage={currentPage} onNavigate={handleNavigate} />
+      <main 
+        className={`transition-all duration-200 ${
+          isTransitioning 
+            ? 'opacity-0 translate-y-4' 
+            : 'opacity-100 translate-y-0'
+        }`}
+      >
         {renderPage()}
       </main>
     </div>
