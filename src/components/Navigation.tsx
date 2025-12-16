@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import Icon from '@/components/ui/icon';
+import ThemeToggle from './ThemeToggle';
 
 type Page = 'manifest' | 'videos' | 'news' | 'roadmap' | 'about';
 
@@ -22,18 +23,21 @@ const Navigation = ({ currentPage, onNavigate }: NavigationProps) => {
       <div className="container mx-auto px-4 py-4">
         <div className="flex items-center justify-between">
           <h1 className="text-2xl font-bold text-primary">Проект</h1>
-          <div className="flex gap-2">
-            {navItems.map((item) => (
-              <Button
-                key={item.id}
-                variant={currentPage === item.id ? 'default' : 'ghost'}
-                onClick={() => onNavigate(item.id)}
-                className="gap-2"
-              >
-                <Icon name={item.icon} size={18} />
-                <span className="hidden md:inline">{item.label}</span>
-              </Button>
-            ))}
+          <div className="flex items-center gap-2">
+            <div className="flex gap-2">
+              {navItems.map((item) => (
+                <Button
+                  key={item.id}
+                  variant={currentPage === item.id ? 'default' : 'ghost'}
+                  onClick={() => onNavigate(item.id)}
+                  className="gap-2"
+                >
+                  <Icon name={item.icon} size={18} />
+                  <span className="hidden md:inline">{item.label}</span>
+                </Button>
+              ))}
+            </div>
+            <ThemeToggle />
           </div>
         </div>
       </div>
