@@ -5,6 +5,7 @@ import NewsPage from './NewsPage';
 import RoadmapPage from './RoadmapPage';
 import AboutPage from './AboutPage';
 import Navigation from '../components/Navigation';
+import ScrollToTop from '../components/ScrollToTop';
 
 type Page = 'manifest' | 'videos' | 'news' | 'roadmap' | 'about';
 
@@ -51,6 +52,7 @@ const Index = () => {
       >
         {renderPage()}
       </main>
+      <ScrollToTop />
     </div>
   );
 };
